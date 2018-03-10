@@ -1,0 +1,13 @@
+Problem: błąd konsoli podczas generowania tabelki.
+
+usunąć ostatnią linijkę w pliku script.js: 
+ var prson = new Person //-> do usuniecia
+
+
+
+Problem: brak metody clear
+do klasy ListOfPeople dodać metodę clear
+
+self.clear = function(){
+	people=[];
+}
