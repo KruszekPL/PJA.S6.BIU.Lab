@@ -36,4 +36,10 @@ function PeopleTableViewModel(config) {
         getData(begin, end);
         self.context.innerHTML = self.people.toTable();
     }
+
+    self.sort = function(comparer) {
+        data.sort(comparer);
+        self.currentPage = 0;
+        self.next();
+    }
 }

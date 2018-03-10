@@ -2,8 +2,8 @@ function Person(json){
     var self = this;
     self.id = json.id;
     self.gender = json.gender;
-    self.name  = json.firstName;
-    self.surname = json.lastName;
+    self.firstName  = json.firstName;
+    self.lastName = json.lastName;
     self.email = json.email;
     self.income = json.income;
     self.birthsday = json.birthsday;
@@ -13,9 +13,9 @@ function Person(json){
         return '<tr><td>'
             +self.id
             +'</td><td>'            
-            +self.name
+            +self.firstName
             +'</td><td>'
-            +self.surname
+            +self.lastName
             +'</td><td>'
             +self.gender
             +'</td><td>'
@@ -30,10 +30,10 @@ function Person(json){
     }
     
     self.fullName = function(){
-        return sum(self.name, self.surname);
+        return sum(self.firstName, self.lastName);
     }
     
-    var sum = function(a,b){
-        return a+ " "+b;
+    var sum = function(a, b){
+        return a + " " + b;
     }   
 }

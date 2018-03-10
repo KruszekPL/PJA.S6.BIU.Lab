@@ -7,3 +7,5 @@ var viewModel = new PeopleTableViewModel({
     count : data.length,
     context : document.getElementById('table')
 });
+
+var comparator = new Comparators();

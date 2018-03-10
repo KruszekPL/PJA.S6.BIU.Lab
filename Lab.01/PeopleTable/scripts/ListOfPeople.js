@@ -21,6 +21,15 @@ function ListOfPeople(){
     }
     
     var generateTableHeader = function(){
-        return '<tr><th>Id</th><th>Name</th><th>Surname</th><th>Gender</th><th>Email</th><th>Age</th><th>Birthsday</th><th>Income</th></tr>'
+        return '<tr>'
+        + '<th><button onclick = "viewModel.sort(comparator.byId)">Id</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byFirstName)">Name</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byLastName)">Surname</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byGender)">Gender</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byEmail)">Email</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byAge)">Age</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byBirthsday)">Birthsday</button></th>'
+        + '<th><button onclick = "viewModel.sort(comparator.byIncome)">Income</button></th>'
+        + '</tr>'
     }
 }
