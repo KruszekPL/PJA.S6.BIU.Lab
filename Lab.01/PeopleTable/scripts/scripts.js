@@ -1,15 +1,32 @@
 
 function Person(json){
     var self = this;
+    self.id = json.id;
+    self.gender = json.gender;
     self.name  = json.firstName;
     self.surname = json.lastName;
-    
-    
+    self.email = json.email;
+    self.income = json.income;
+    self.birthsday = json.birthsday;
+    self.age = json.age;
+
     self.toTableRow = function(){
         return '<tr><td>'
+            +self.id
+            +'</td><td>'            
             +self.name
             +'</td><td>'
             +self.surname
+            +'</td><td>'
+            +self.gender
+            +'</td><td>'
+            +self.email
+            +'</td><td>'
+            +self.age
+            +'</td><td>'
+            +self.birthsday
+            +'</td><td>'
+            +self.income                                                            
             +'</td></tr>'
     }
     
@@ -41,7 +58,7 @@ function ListOfPeople(){
     }
     
     var generateTableHeader= function(){
-        return '<tr><th>Name</th> <th>Surname</th></tr>'
+        return '<tr><th>Id</th><th>Name</th><th>Surname</th><th>Gender</th><th>Email</th><th>Age</th><th>Birthsday</th><th>Income</th></tr>'
     }
 }
 
@@ -53,25 +70,3 @@ function init(){
     var context = document.getElementById('table');
     context.innerHTML = listOfPeople.toTable();
 }
-
-var person = new  Person();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
