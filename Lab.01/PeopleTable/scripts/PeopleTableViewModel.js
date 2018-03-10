@@ -37,6 +37,16 @@ function PeopleTableViewModel(config) {
         self.context.innerHTML = self.people.toTable();
     }
 
+    self.resultsPerPage = function(number) {
+        self.people.clear();
+        self.pageSize = number;
+        self.currentPage = 0;
+        var begin = (self.currentPage) * self.pageSize;
+        var end = (self.currentPage + 1) * self.pageSize;
+        getData(begin, end);
+        self.context.innerHTML = self.people.toTable();
+    }
+
     self.sort = function(comparer) {
         data.sort(comparer);
         self.currentPage = 0;
