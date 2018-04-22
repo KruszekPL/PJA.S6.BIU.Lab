@@ -12,6 +12,7 @@ export class BlogPostComponent{
     isAddNewCommentActive = false;
     newComment: PostComment;
     tempNick = "";    
+    tempContent = "";
 
     post = new BlogPost(
         "New Post",
@@ -33,6 +34,8 @@ export class BlogPostComponent{
         this.isAddNewCommentActive = false;
         this.newComment = new PostComment(nick, new Date(), content);
         this.post.comments.push(this.newComment);
+        this.tempNick = "";    
+        this.tempContent = "";
     }
 
 }
