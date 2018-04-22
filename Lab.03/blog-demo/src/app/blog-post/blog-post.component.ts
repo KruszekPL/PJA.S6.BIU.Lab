@@ -9,6 +9,9 @@ import { PostComment } from "../post-comment/post-comment";
 export class BlogPostComponent{
 
     isInEditMode = false;
+    isAddNewCommentActive = false;
+    newComment: PostComment;
+    tempNick = "";    
 
     post = new BlogPost(
         "New Post",
@@ -21,4 +24,15 @@ export class BlogPostComponent{
     toggleEditMode() : void {
         this.isInEditMode = !this.isInEditMode;
     }
+
+    toggleAddNewComment() : void {
+        this.isAddNewCommentActive = !this.isAddNewCommentActive;
+    }
+
+    addNewComment(nick : string, content : string) : void {
+        this.isAddNewCommentActive = false;
+        this.newComment = new PostComment(nick, new Date(), content);
+        this.post.comments.push(this.newComment);
+    }
+
 }

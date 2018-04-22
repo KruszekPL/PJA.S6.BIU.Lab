@@ -1,4 +1,4 @@
-<button (click)="toggleEditMode()">edytuj</button>
+<button (click)="toggleEditMode()" class="btn btn-success">Edit</button>
 <h1 *ngIf="!isInEditMode">Tytuł: {{post.title}}</h1>
 <input *ngIf="isInEditMode" type="text" [(ngModel)] = "post.title"/>
 <h2>Data dodania: {{post.date | date: 'shortDate'}}</h2>
@@ -10,3 +10,24 @@
         <p>{{comment.content}}</p>
     </li>
 </ul>
+
+<button *ngIf="!isAddNewCommentActive" (click)="toggleAddNewComment()" class="btn btn-success">Add new comment</button>
+
+<div *ngIf="isAddNewCommentActive" class="container">
+    <hr>
+        <h2>Add new comment</h2>
+        <form (ngSubmit)="addNewComment(tempNick, tempContent)">
+          <div class="form-group">
+            <label for="nick">Nick</label>
+            <input type="text" class="form-control" name="tempNick" id="tempNick" [(ngModel)] = "tempNick">
+          </div>
+    
+          <div class="form-group">
+            <label for="content">Comment</label>
+            <input type="text" class="form-control" name="tempContent" id="tempContent" [(ngModel)] = "tempContent">
+          </div>
+    
+          <button type="submit" class="btn btn-success">Add new comment</button>
+    
+        </form>
+    </div>
