@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { BlogPost } from "./blog-post";
+import { PostComment } from "../post-comment/post-comment";
 
 @Component({
     selector:'blog-post',
@@ -13,7 +14,8 @@ export class BlogPostComponent{
         "New Post",
         new Date(),
         "some content",
-        ["comment 1", "comment 2"]
+        [new PostComment("User1", new Date(), "comment 1"),
+        new PostComment("User2", new Date(), "comment 2")]
     );
 
     toggleEditMode() : void {
