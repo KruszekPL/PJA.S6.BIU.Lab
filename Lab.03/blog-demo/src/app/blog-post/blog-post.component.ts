@@ -38,4 +38,8 @@ export class BlogPostComponent{
         this.tempContent = "";
     }
 
+    removeComment(i) {
+        this.post.comments.splice(i, 1);
+    }
+
 }
