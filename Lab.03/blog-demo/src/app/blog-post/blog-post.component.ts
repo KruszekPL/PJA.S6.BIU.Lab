@@ -30,7 +30,7 @@ export class BlogPostComponent{
         this.isAddNewCommentActive = !this.isAddNewCommentActive;
     }
 
-    addNewComment(nick : string, content : string) : void {
+    addNewComment(nick, content) : void {
         this.isAddNewCommentActive = false;
         this.newComment = new PostComment(nick, new Date(), content);
         this.post.comments.push(this.newComment);
@@ -42,4 +42,8 @@ export class BlogPostComponent{
         this.post.comments.splice(i, 1);
     }
 
+    // editComment(i, nick, content) {
+    //     this.newComment = new PostComment(nick, new Date(), content);
+    //     this.post.comments.splice(i, 1, this.newComment);
+    // }
 }

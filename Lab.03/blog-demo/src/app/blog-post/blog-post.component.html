@@ -1,9 +1,9 @@
 <button (click)="toggleEditMode()" class="btn btn-success">Edit</button>
-<h1 *ngIf="!isInEditMode">Tytuł: {{post.title}}</h1>
+<h1 *ngIf="!isInEditMode">Title: {{post.title}}</h1>
 <input *ngIf="isInEditMode" type="text" [(ngModel)] = "post.title"/>
-<h2>Data dodania: {{post.date | date: 'shortDate'}}</h2>
-<span>Treść: {{post.content}}</span>
-<h2>Komentarze:</h2>
+<h2>Added: {{post.date | date: 'shortDate'}}</h2>
+<span>Content: {{post.content}}</span>
+<h2>Comments:</h2>
 <ul>
     <li *ngFor="let comment of post.comments; let i = index">
         <h2>{{comment.nick}} on {{comment.date | date: 'shortDate'}} wroted:</h2>
