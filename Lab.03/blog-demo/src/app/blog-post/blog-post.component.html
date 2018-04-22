@@ -1,4 +1,6 @@
-<h1>Tytuł: {{post.title}}</h1>
+<button (click)="toggleEditMode()">edytuj</button>
+<h1 *ngIf="!isInEditMode">Tytuł: {{post.title}}</h1>
+<input *ngIf="isInEditMode" type="text" [(ngModel)] = "post.title"/>
 <h2>Data dodania: {{post.date | date: 'shortDate'}}</h2>
 <span>Treść: {{post.content}}</span>
 <h2>Komentarze:</h2>
