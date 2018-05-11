@@ -1,17 +1,48 @@
 <td>
   {{model.id}}
 </td>
-<td>{{model.firstname}}
+<td *ngIf="!isInEditMode">{{model.firstname}}
 </td>
-<td>{{model.lastname}}
+<td *ngIf="!isInEditMode">{{model.lastname}}
 </td>
-<td>{{model.gender}}
+<td *ngIf="!isInEditMode">{{model.gender}}
 </td>
-<td>{{model.email}}
+<td *ngIf="!isInEditMode">{{model.email}}
 </td>
-<td>{{model.age}}
+<td *ngIf="!isInEditMode">{{model.age}}
 </td>
-<td>{{model.birthday | date:'yyyy-MM-dd'}}<!-- o tutaj -->
+<td *ngIf="!isInEditMode">{{model.birthday | date:'dd-MM-yyyy'}}<!-- o tutaj -->
 </td>
-<td>{{model.income | currency}}<!-- o tutaj -->
+<td *ngIf="!isInEditMode">{{model.income | currency}}<!-- o tutaj -->
 </td>
+
+<td *ngIf="!isInEditMode">
+    <button (click)="edit()" class="btn btn-sm btn-info">Edit</button><br>
+    <button (click)="delete()" class="btn btn-sm btn-danger">Delete</button>
+  </td>
+
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+      <input type="text" [(ngModel)]="emo.firstname">
+    </td>
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+        <input type="text" [(ngModel)]="emo.lastname">
+    </td>
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+        <input type="text" [(ngModel)]="emo.gender">
+    </td>
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+        <input type="text" [(ngModel)]="emo.email">
+    </td>
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+        <input type="number" [(ngModel)]="emo.age">
+    </td>
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+        <input type="date" [(ngModel)]="emo.birthday"><!-- o tutaj -->
+    </td>
+    <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+      <input type="text" [(ngModel)]="emo.income"><!-- o tutaj -->
+    </td>
+  <td *ngIf="isInEditMode" style="background-color: deepskyblue">
+      <button (click)="save()" class="btn btn-sm btn-success">Save</button><br>
+      <button (click)="isInEditMode=false" class="btn btn-sm btn-warning">Undo</button>
+  </td>
