@@ -1,0 +1,84 @@
+<div class="container">
+  <h1>Add New Profile</h1>
+  <hr>
+  <div class="row">
+
+
+    <div class="col-md-9 personal-info">
+
+      <h3>Personal info</h3>
+
+      <form class="form-horizontal" 
+        role="form" 
+        novalidate
+        [formGroup]="userForm">
+
+        <div class="form-group" [ngClass]="{
+          'has-error':(userForm.get('firstName').touched || userForm.get('firstName').dirty)
+            &&!userForm.get('firstName').valid
+        }">
+          <!-- class="has-error"-->
+          <label class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" formControlName="firstName" >
+            <!--<div>
+              <span class="text-danger">Error message</span>
+            </div>-->
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" formControlName="lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text"  formControlName="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text"  formControlName="username">
+            <span *ngIf="userExists" class="text-danger">this user already exists !</span>
+          </div>
+        </div>
+
+        <div >
+
+          <div class="form-group" [ngClass]="{
+          'has-error':(userForm.get('password').touched || userForm.get('password').dirty)
+            &&!userForm.get('password').valid
+        }">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password"  formControlName="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password"  formControlName="cPassword">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input type="button" class="btn btn-primary" value="Save Changes">
+            <span></span>
+            <input type="reset" class="btn btn-default" value="Cancel">
+            <span></span>
+            <input type="button" class="btn btn-default" value="Test" (click)="populateTestData()">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<hr>
