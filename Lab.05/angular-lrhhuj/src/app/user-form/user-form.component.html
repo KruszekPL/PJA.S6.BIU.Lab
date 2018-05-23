@@ -2,71 +2,93 @@
   <h1>Add New Profile</h1>
   <hr>
   <div class="row">
-
-
     <div class="col-md-9 personal-info">
-
       <h3>Personal info</h3>
-
-      <form class="form-horizontal" 
-        role="form" 
-        novalidate
-        [formGroup]="userForm">
-
-        <div class="form-group" [ngClass]="{
-          'has-error':(userForm.get('firstName').touched || userForm.get('firstName').dirty)
-            &&!userForm.get('firstName').valid
-        }">
+      <form class="form-horizontal" role="form" novalidate [formGroup]="userForm">
+        <div class="form-group">
           <!-- class="has-error"-->
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" formControlName="firstName" >
-            <!--<div>
-              <span class="text-danger">Error message</span>
-            </div>-->
+            <input class="form-control" type="text" formControlName="firstName" [ngClass]="{
+              'is-invalid':(userForm.get('firstName').touched || userForm.get('firstName').dirty)
+                &&!userForm.get('firstName').valid
+            }">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text" formControlName="lastName">
+            <input class="form-control" type="text" formControlName="lastName" [ngClass]="{
+              'is-invalid':(userForm.get('lastName').touched || userForm.get('lastName').dirty)
+                &&!userForm.get('lastName').valid
+            }">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Email:</label>
           <div class="col-lg-8">
-            <input class="form-control" type="text"  formControlName="email">
+            <input class="form-control" type="text" formControlName="email" [ngClass]="{
+              'is-invalid':(userForm.get('email').touched || userForm.get('email').dirty)
+                &&!userForm.get('email').valid
+            }">
+          </div>
+          <div class="col-lg-4">
+            <input type="radio" value="email" formControlName="authorization"> Use email to authorize
           </div>
         </div>
-
+        <div class="form-group">
+          <label class="col-lg-12 control-label">Phone (format: +99(99)9999-9999)</label>
+          <div class="col-lg-8">
+            <input class="form-control" type="text" formControlName="phone" [ngClass]="{
+              'is-invalid':(userForm.get('phone').touched || userForm.get('phone').dirty)
+                &&!userForm.get('phone').valid
+            }">
+          </div>
+          <span *ngIf="userForm.get('phone').errors?.pattern">
+            {{phoneFormatMsg}}
+          </span>
+          <div class="col-lg-4">
+            <input type="radio" value="phone" formControlName="authorization"> Use sms to authorize
+          </div>
+          <br>
+          <div class="col-lg-3">
+            <label> Use token:
+              <input class="form-control" type="password" formControlName="token">
+            </label>
+            <span *ngIf="!tokenCorrect" class="text-danger">invalid token!</span>
+          </div>
+        </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Username:</label>
           <div class="col-md-8">
-            <input class="form-control" type="text"  formControlName="username">
+            <input class="form-control" type="text" formControlName="username">
             <span *ngIf="userExists" class="text-danger">this user already exists !</span>
           </div>
         </div>
-
-        <div >
-
-          <div class="form-group" [ngClass]="{
-          'has-error':(userForm.get('password').touched || userForm.get('password').dirty)
-            &&!userForm.get('password').valid
-        }">
+        <div formGroupName="pswdGroup" [ngClass]="{
+          'is-invalid':userForm.get('pswdGroup').valid }">
+          <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password"  formControlName="password">
+              <input class="form-control" type="password" formControlName="password" [ngClass]="{
+                'is-invalid':(userForm.get('pswdGroup.password').touched || userForm.get('pswdGroup.password').dirty)
+                  &&!userForm.get('pswdGroup.password').valid
+              }">
             </div>
+            <span *ngIf="userForm.get('pswdGroup.password').errors?.pattern">
+              {{passwordPatternMsg}}
+            </span>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:</label>
+            <label class="col-md-10 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password"  formControlName="cPassword">
+              <input class="form-control" type="password" formControlName="cPassword">
+              <span *ngIf="userForm.get('pswdGroup').errors?.matchPasswords">
+                {{matchPasswordsMsg}}
+              </span>
             </div>
           </div>
-
         </div>
-
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
