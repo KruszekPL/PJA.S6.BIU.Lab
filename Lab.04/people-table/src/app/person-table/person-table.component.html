@@ -3,15 +3,44 @@
     <tr>
       <th>Id</th>
       <th><button (click)="sortByName()" class="btn btn-sm btn-danger js-sort-name">Name</button></th>
-      <th>Surname</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Age</th>
-      <th>Birthsday</th>
-      <th>Income</th>
+      <th><button (click)="sortByLastName()" class="btn btn-sm btn-danger js-sort-lastname">Surname</button></th>
+      <th><button (click)="sortByGender()" class="btn btn-sm btn-danger js-sort-gender">Gender</button></th>
+      <th><button (click)="sortByEmail()" class="btn btn-sm btn-danger js-sort-email">Email</button></th>
+      <th><button (click)="sortByAge()" class="btn btn-sm btn-danger js-sort-age">Age</button></th>
+      <th><button (click)="sortByBirthday()" class="btn btn-sm btn-danger js-sort-birthday">Birthday</button></th>
+      <th><button (click)="sortByIncome()" class="btn btn-sm btn-danger js-sort-income">Income</button></th>
+      <th>Action</th>
     </tr>
-    <tr *ngFor="let item of items" person-table-row [model]="item">
+    <tr>
+      <td></td>
+      <td>
+          <input type="text" [ngModel]="filter.name" (ngModelChange) = "filter.name=$event; refresh()" id="js-input-name" class="form-control"/>
+      </td>
+      <td>
+          <input type="text" [ngModel]="filter.lastname" (ngModelChange) = "filter.lastname=$event; refresh()" id="js-input-surname" class="form-control"/>
+      </td>
+      <td>
+          <label>Male <input type="checkbox" [ngModel]="filter.genderMale" (ngModelChange) = "filter.genderMale=$event; refresh()"></label><br/>
+          <label>Female <input type="checkbox" [ngModel]="filter.genderFemale" (ngModelChange) = "filter.genderFemale=$event; refresh()"></label>
+       </td>
+      <td>
+          <input type="text" [ngModel]="filter.email" (ngModelChange) = "filter.email=$event; refresh()" id="js-input-email" class="form-control"/>
+      </td>
+      <td>
+          <label>From <input type="number" [ngModel]="filter.ageFrom" (ngModelChange) = "filter.ageFrom=$event; refresh()" id="js-input-ageFrom" class="form-control"/></label><br/>
+          <label>To <input type="number" [ngModel]="filter.ageTo" (ngModelChange) = "filter.ageTo=$event; refresh()" id="js-input-ageTo" class="form-control"/></label>
+      </td>
+      <td>
+          <label>From <input type="date" [ngModel]="filter.birthdayFrom" (ngModelChange) = "filter.birthdayFrom=$event; refresh()" id="js-input-birthdayFrom" class="form-control"/></label><br/>
+          <label>To <input type="date" [ngModel]="filter.birthdayTo" (ngModelChange) = "filter.birthdayTo=$event; refresh()" id="js-input-birthdayTo" class="form-control"/></label>
+      </td>
+      <td>
+          <label>From <input type="number" [ngModel]="filter.incomeFrom" (ngModelChange) = "filter.incomeFrom=$event; refresh()" id="js-input-incomeFrom" class="form-control"/></label><br/>
+          <label>To <input type="number" [ngModel]="filter.incomeTo" (ngModelChange) = "filter.incomeTo=$event; refresh()" id="js-input-incomeTo" class="form-control"/></label>
+      </td>
+    </tr>
 
+    <tr *ngFor="let item of items" person-table-row [model]="item" (deleteEvent)="delete($event)" (saveEvent)="save($event)">
     </tr>
   </table>
   <person-table-paging (next)="next()" (prev)="prev()"><!-- o tutaj!! -->
